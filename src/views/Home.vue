@@ -1,15 +1,17 @@
 <template>
-  <hello-world />
+  <div>
+    <h3>Welcome</h3>
+  </div>
 </template>
 
 <script>
-  import HelloWorld from '../components/HelloWorld'
-
-  export default {
-    name: 'Home',
-
-    components: {
-      HelloWorld,
-    },
-  }
+export default {
+  name: 'Home',
+};
 </script>
+
+<style scoped>
+h3 {
+  text-align: center;
+}
+</style>
