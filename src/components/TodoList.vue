@@ -1,26 +1,37 @@
 <template>
-  <v-card class="mx-auto" max-width="500">
-    <v-list>
-      <v-list-item-group v-model="model">
-        <v-list-item v-for="item in items" :key="item.id">
-          <v-checkbox
-            :input-value="item.completed"
-            @click="toggleCompleted(item.id)"
-            color="deep-purple accent-4"
-          ></v-checkbox>
-          <v-list-item-content>
-            <v-list-item-title v-text="item.text"></v-list-item-title>
-          </v-list-item-content>
-          <v-list-item-icon>
-            <v-icon @click="deleteTodo(item.id)">mdi-delete</v-icon>
-          </v-list-item-icon>
-        </v-list-item>
-      </v-list-item-group>
-    </v-list>
-  </v-card>
+  <div>
+    <v-text-field
+      outlined
+      label="Add Todo"
+      append-icon="mdi-plus"
+      v-model="newTodoText"
+      @click:append="addTodo"
+      @keydown.enter="addTodo"
+    ></v-text-field>
+    <v-card class="mx-auto" max-width="500">
+      <v-list>
+        <v-list-item-group v-model="model">
+          <v-list-item v-for="item in items" :key="item.id">
+            <v-checkbox
+              :input-value="item.completed"
+              @click="toggleCompleted(item.id)"
+              color="deep-purple accent-4"
+            ></v-checkbox>
+            <v-list-item-content>
+              <v-list-item-title v-text="item.text"></v-list-item-title>
+            </v-list-item-content>
+            <v-list-item-icon>
+              <v-icon @click="deleteTodo(item.id)">mdi-delete</v-icon>
+            </v-list-item-icon>
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
+    </v-card>
+  </div>
 </template>
 
 <script>
+import { v4 as uuidv4 } from 'uuid';
 export default {
   data() {
     return {
@@ -31,6 +42,7 @@ export default {
         { id: 4, text: 'Fourth Todo', completed: false },
       ],
       model: 1,
+      newTodoText: '',
     };
   },
   methods: {
@@ -40,6 +52,14 @@ export default {
     toggleCompleted(id) {
       let updatedTodo = this.items.find((todo) => todo.id === id);
       updatedTodo.completed = !updatedTodo.completed;
+    },
+    addTodo() {
+      this.items.push({
+        id: uuidv4(),
+        text: this.newTodoText,
+        completed: false,
+      });
+      this.newTodoText = '';
     },
   },
 };
