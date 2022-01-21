@@ -11,14 +11,23 @@
     <v-card class="mx-auto" max-width="500" v-if="items.length !== 0">
       <v-list>
         <v-list-item-group v-model="model">
-          <v-list-item v-for="item in items" :key="item.id">
+          <v-list-item
+            v-for="item in items"
+            :key="item.id"
+            :color="item.completed ? 'primary' : ''"
+          >
             <v-checkbox
               :input-value="item.completed"
               @click="toggleCompleted(item.id)"
-              color="deep-purple accent-4"
+              color="primary accent-4"
             ></v-checkbox>
             <v-list-item-content>
-              <v-list-item-title v-text="item.text"></v-list-item-title>
+              <v-list-item-title
+                :class="
+                  item.completed ? 'text-decoration-line-through' : 'body-1'
+                "
+                v-text="item.text"
+              ></v-list-item-title>
             </v-list-item-content>
             <v-list-item-icon>
               <v-icon @click="deleteTodo(item.id)">mdi-delete</v-icon>
