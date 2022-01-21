@@ -71,13 +71,17 @@ export default {
       );
     },
     addTodo() {
-      this.items.push({
-        id: uuidv4(),
-        text: this.newTodoText,
-        completed: false,
-      });
-      this.newTodoText = '';
-      store.dispatch('displaySnackbar', 'Todo Added');
+      if (this.newTodoText !== '') {
+        this.items.push({
+          id: uuidv4(),
+          text: this.newTodoText,
+          completed: false,
+        });
+        this.newTodoText = '';
+        store.dispatch('displaySnackbar', 'Todo Added');
+      } else {
+        store.dispatch('displaySnackbar', 'Todo is Empty');
+      }
     },
   },
 };
