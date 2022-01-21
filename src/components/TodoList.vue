@@ -1,13 +1,16 @@
 <template>
   <div>
-    <v-text-field
-      outlined
-      label="Add Todo"
-      append-icon="mdi-plus"
-      v-model="newTodoText"
-      @click:append="addTodo"
-      @keydown.enter="addTodo"
-    ></v-text-field>
+    <div class="mx-auto add-todo">
+      <v-text-field
+        outlined
+        label="Add Todo"
+        append-icon="mdi-plus"
+        v-model="newTodoText"
+        @click:append="addTodo"
+        @keydown.enter="addTodo"
+      ></v-text-field>
+    </div>
+
     <v-card class="mx-auto" max-width="500" v-if="items.length !== 0">
       <v-list>
         <v-list-item-group v-model="model">
@@ -94,5 +97,8 @@ export default {
   top: 50%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+}
+.add-todo {
+  max-width: 500px;
 }
 </style>
