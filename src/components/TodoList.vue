@@ -39,7 +39,7 @@
         </v-list-item-group>
       </v-list>
     </v-card>
-    <div class="no-task" v-else>No task present</div>
+    <div class="no-task" v-else>All todos are completed</div>
   </div>
 </template>
 
@@ -50,12 +50,7 @@ import store from '../store';
 export default {
   data() {
     return {
-      items: [
-        { id: 1, text: 'First Todo', completed: false },
-        { id: 2, text: 'Second Todo', completed: false },
-        { id: 3, text: 'Third Todo', completed: false },
-        { id: 4, text: 'Fourth Todo', completed: false },
-      ],
+      items: [],
       model: 1,
       newTodoText: '',
     };
