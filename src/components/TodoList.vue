@@ -5,6 +5,7 @@
         <v-list-item v-for="item in items" :key="item.id">
           <v-checkbox
             :input-value="item.completed"
+            @click="toggleCompleted(item.id)"
             color="deep-purple accent-4"
           ></v-checkbox>
           <v-list-item-content>
@@ -35,6 +36,10 @@ export default {
   methods: {
     deleteTodo(id) {
       this.items = this.items.filter((todo) => todo.id !== id);
+    },
+    toggleCompleted(id) {
+      let updatedTodo = this.items.find((todo) => todo.id === id);
+      updatedTodo.completed = !updatedTodo.completed;
     },
   },
 };
