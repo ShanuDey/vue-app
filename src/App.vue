@@ -5,7 +5,7 @@
     <v-navigation-drawer app v-model="drawer" :mini-variant.sync="mini">
       <v-list-item class="px-2">
         <v-list-item-avatar>
-          <v-img src="https://randomuser.me/api/portraits/men/85.jpg"></v-img>
+          <v-img src="./assets/logo.png"></v-img>
         </v-list-item-avatar>
 
         <v-list-item-title>My App</v-list-item-title>
@@ -18,7 +18,13 @@
       <v-divider></v-divider>
 
       <v-list dense>
-        <v-list-item v-for="item in items" :key="item.title" link>
+        <v-list-item
+          v-for="item in items"
+          :key="item.title"
+          :to="item.to"
+          link
+          @click="$store.commit('setTitle', item.title)"
+        >
           <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-icon>
@@ -37,7 +43,6 @@
       dark
       shrink-on-scroll
       src="https://picsum.photos/1920/1080?random"
-      scroll-target="#scrolling-techniques-2"
     >
       <template v-slot:img="{ props }">
         <v-img
@@ -48,7 +53,7 @@
 
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
-      <v-app-bar-title>Title</v-app-bar-title>
+      <v-app-bar-title>{{ $store.state.title }}</v-app-bar-title>
 
       <v-spacer></v-spacer>
 
@@ -87,9 +92,8 @@ export default {
   data: () => ({
     drawer: true,
     items: [
-      { title: 'Home', icon: 'mdi-home-city' },
-      { title: 'My Account', icon: 'mdi-account' },
-      { title: 'Users', icon: 'mdi-account-group-outline' },
+      { title: 'Home', icon: 'mdi-home-city', to: '/' },
+      { title: 'About', icon: 'mdi-information', to: '/about' },
     ],
     mini: true,
   }),
