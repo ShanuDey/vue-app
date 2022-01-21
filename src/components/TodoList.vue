@@ -8,7 +8,7 @@
       @click:append="addTodo"
       @keydown.enter="addTodo"
     ></v-text-field>
-    <v-card class="mx-auto" max-width="500">
+    <v-card class="mx-auto" max-width="500" v-if="items.length !== 0">
       <v-list>
         <v-list-item-group v-model="model">
           <v-list-item v-for="item in items" :key="item.id">
@@ -27,6 +27,7 @@
         </v-list-item-group>
       </v-list>
     </v-card>
+    <div class="no-task" v-else>No task present</div>
   </div>
 </template>
 
@@ -64,3 +65,13 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.no-task {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+</style>
