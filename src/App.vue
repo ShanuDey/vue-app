@@ -93,6 +93,7 @@ export default {
     drawer: true,
     items: [
       { title: 'Home', icon: 'mdi-home-city', to: '/' },
+      { title: 'Todo', icon: 'mdi-format-list-checks', to: '/todo' },
       { title: 'About', icon: 'mdi-information', to: '/about' },
     ],
     mini: true,
