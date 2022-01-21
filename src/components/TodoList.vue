@@ -42,6 +42,8 @@
 
 <script>
 import { v4 as uuidv4 } from 'uuid';
+import store from '../store';
+
 export default {
   data() {
     return {
@@ -58,10 +60,15 @@ export default {
   methods: {
     deleteTodo(id) {
       this.items = this.items.filter((todo) => todo.id !== id);
+      store.dispatch('displaySnackbar', 'Todo Deleted');
     },
     toggleCompleted(id) {
       let updatedTodo = this.items.find((todo) => todo.id === id);
       updatedTodo.completed = !updatedTodo.completed;
+      store.dispatch(
+        'displaySnackbar',
+        updatedTodo.completed ? 'Todo Completed' : 'Todo Incomplete'
+      );
     },
     addTodo() {
       this.items.push({
@@ -70,6 +77,7 @@ export default {
         completed: false,
       });
       this.newTodoText = '';
+      store.dispatch('displaySnackbar', 'Todo Added');
     },
   },
 };

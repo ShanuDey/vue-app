@@ -76,6 +76,20 @@
       <v-container fluid>
         <!-- If using vue-router -->
         <router-view></router-view>
+        <v-snackbar v-model="$store.state.snackbar">
+          {{ $store.state.snackbarText }}
+
+          <template v-slot:action="{ attrs }">
+            <v-btn
+              color="pink"
+              text
+              v-bind="attrs"
+              @click="$store.state.snackbar = false"
+            >
+              Close
+            </v-btn>
+          </template>
+        </v-snackbar>
       </v-container>
     </v-main>
 
